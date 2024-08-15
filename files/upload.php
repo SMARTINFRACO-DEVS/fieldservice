@@ -97,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body class="bg-[#111827]">
+<a href="home.php" class=" mt-[-20px] fixed left-0 right-0 pt-8">
+<img class="ml-[200px] mt-[-20px]" src="back-icon-new.png" width="40px" height="40px">
+</a>
  
 <form action="upload.php"  method="post" enctype="multipart/form-data" class="bg-[#111827]">
   <div class="space-y-12">
