@@ -91,7 +91,7 @@ $conn->close();
             exportEnabled: true,
             theme: "light2",
             title: { text: "Count by Day" },
-            axisY: { title: "Number of Items", includeZero: true },
+            axisY: { title: "Tags Per Day", includeZero: true },
             axisX: { title: "Date", interval: 1, labelAngle: -45 },
             data: [{
                 type: "spline",
@@ -108,7 +108,7 @@ $conn->close();
             exportEnabled: true,
             theme: "light2",
             title: { text: "Count by Week" },
-            axisY: { title: "Number of Items", includeZero: true },
+            axisY: { title: "Tags Per Week", includeZero: true },
             axisX: { title: "Week", interval: 1, labelAngle: -45 },
             data: [{
                 type: "column",
@@ -125,7 +125,7 @@ $conn->close();
             exportEnabled: true,
             theme: "light1",
             title: { text: "Count by Team Member" },
-            axisY: { title: "Number of Items", includeZero: true },
+            axisY: { title: "Tags Per Team Member", includeZero: true },
             axisX: { title: "Name", interval: 1, labelAngle: -45 },
             data: [{
                 type: "column",
@@ -154,7 +154,7 @@ $conn->close();
 </nav>
 
 <div class="overflow-x-auto mt-[5%] mx-[20%]">
-    <h2>Items Count by Day</h2>
+    <h2>Service Delivery Tagging Dashboard</h2>
     <div class="chart-container">
         <div id="chartContainerDay" style="height: 370px;"></div>
     </div>
