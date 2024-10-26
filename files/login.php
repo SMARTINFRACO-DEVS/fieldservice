@@ -23,26 +23,32 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
         exit();
     } else {
         // Prepare a statement to prevent SQL injection
-        $query = "SELECT password, id, name FROM users WHERE user_name = :user_name";
+        $query = "SELECT password, id, name FROM users WHERE user_name = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bindParam(':user_name', $uname);
-        $stmt->execute();
 
-        // Fetch the stored hashed password
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $storedHash = $row['password'];
+        if ($stmt) {
+            $stmt->bind_param("s", $uname); // "s" specifies that $uname is a string
+            $stmt->execute();
 
-        if ($storedHash && password_verify($pass, $storedHash)) {
-            // Password is correct, proceed with the login
-            $_SESSION['user_name'] = $uname;
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['id'] = $row['id'];
-            header("Location: dashboard.php");
-            exit();
+            // Fetch the result
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $storedHash = $row['password'];
+
+            if ($storedHash && password_verify($pass, $storedHash)) {
+                // Password is correct, proceed with the login
+                $_SESSION['user_name'] = $uname;
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['id'] = $row['id'];
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                // Password is incorrect
+                header("Location: index.php?error=Incorrect User name or password");
+                exit();
+            }
         } else {
-            // Password is incorrect
-            header("Location: index.php?error=Incorrect User name or password");
-            exit();
+            die("Failed to prepare the statement: " . $conn->error);
         }
     }
 } else {
