@@ -24,7 +24,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     } else {
         // Prepare a statement to prevent SQL injection
         $query = "SELECT password, id, name FROM users WHERE user_name = :user_name";
-        $stmt = $pdo->prepare($query);
+        $stmt = $conn->prepare($query);
         $stmt->bindParam(':user_name', $uname);
         $stmt->execute();
 
