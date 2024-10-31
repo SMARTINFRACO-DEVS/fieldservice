@@ -21,9 +21,15 @@ WORKDIR /var/www/html
 
 
 # Create uploads directory and set permissions
-RUN mkdir -p uploads && \
-    chown -R www-data:www-data uploads && \
-    chmod -R 755 uploads
+#RUN mkdir -p uploads && \
+ #   chown -R www-data:www-data uploads && \
+  #  chmod -R 755 uploads
+
+RUN mkdir -p /var/www/html/uploads
+RUN chown -R www-data:www-data /var/www/html/uploads
+RUN chmod -R 755 /var/www/html/uploads
+
+
 
 
 RUN chown -R www-data:www-data /var/www/html
